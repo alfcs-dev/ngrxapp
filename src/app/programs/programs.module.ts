@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { MaterialElementsModule } from '../angular-material.module';
 
@@ -29,10 +31,11 @@ export const ROUTES: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     MaterialElementsModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    StoreModule.forFeature('programs', {})
   ],
   providers: [ProgramsService],
   declarations: [...containers.list, ...presentational.list],
-  exports: [...containers.list]
+  exports: [...containers.list, ...presentational.list]
 })
 export class ProgramsModule {}

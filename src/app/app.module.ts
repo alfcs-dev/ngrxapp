@@ -3,6 +3,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { StoreModule } from '@ngrx/store';
+
 import { MaterialElementsModule } from './angular-material.module';
 
 import { AppComponent } from './app.component';
@@ -21,7 +23,8 @@ export const ROUTES: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialElementsModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    StoreModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent]
