@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  programsUrl: `http://dev-v2.tolaactivity.app.tola.io/api/workflowlevel1/`,
+  token: 'dd18c9fa41efd7fede66342e8d7bab9297112a80'
 };

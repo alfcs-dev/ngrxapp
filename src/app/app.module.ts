@@ -1,21 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
+import { MaterialElementsModule } from './angular-material.module';
 
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 
-import { environment } from '../environments/environment';
+export const ROUTES: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'programs' },
+  {
+    path: 'programs',
+    loadChildren: './programs/programs.module#ProgramsModule'
+  }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    BrowserAnimationsModule,
+    MaterialElementsModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

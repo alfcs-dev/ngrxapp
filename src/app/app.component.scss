@@ -1,0 +1,15 @@
+@import '../_variables';
+:host {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $basic-background;
+  &--view {
+    flex: 1;
+  }
+}
