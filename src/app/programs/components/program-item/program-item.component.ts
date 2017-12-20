@@ -11,7 +11,7 @@ import {
   template: `
     <mat-card>
       <mat-card-header>
-        {{program.id}} {{program.name}}
+        <mat-card-title><h3>{{program.id}} {{program.name}}</h3></mat-card-title>
       </mat-card-header>
       <mat-card-content>
       <mat-list *ngIf="program.activities">
@@ -27,7 +27,5 @@ import {
 })
 export class ProgramItemComponent implements OnInit {
   @Input() program: any;
-  ngOnInit() {
-    //console.log(this.program);
-  }
+  ngOnInit() {}
 }
