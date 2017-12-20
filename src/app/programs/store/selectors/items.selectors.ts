@@ -18,19 +18,12 @@ export const getAllItems = createSelector(
   getItemsEntities,
   fromActivities.getAllActivities,
   (items, activities) => {
-    const itemsKeys = Object.keys(items);
-    // itemsKeys.forEach(itemId => {
-    //   items[itemId].activities = activities.filter(
-    //     act => act.workflowlevel1 === items[itemId].url
-    //   );
-    // });
     const itemsArray = Object.keys(items).map(id => ({
       ...items[parseInt(id, 10)],
       activities: activities.filter(
         act => act.workflowlevel1 === items[parseInt(id, 10)].url
       )
     }));
-    console.log(itemsArray);
     return itemsArray;
   }
 );
