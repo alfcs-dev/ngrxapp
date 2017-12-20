@@ -24,6 +24,14 @@ export const ROUTES: Routes = [
   {
     path: '',
     component: containers.ItemsComponent
+  },
+  {
+    path: ':programId/activity/new',
+    component: containers.ProgramAcivityComponent
+  },
+  {
+    path: ':programId/activity/:activityId',
+    component: containers.ProgramAcivityComponent
   }
 ];
 

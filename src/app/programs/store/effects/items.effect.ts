@@ -5,6 +5,7 @@ import { of } from 'rxjs/observable/of';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 import * as itemsActions from '../actions/items.actions';
+import * as activitiesActions from '../actions/activities.actions';
 import * as services from '../../services';
 
 @Injectable()
@@ -25,4 +26,9 @@ export class ItemsEffects {
         );
     })
   );
+
+  @Effect()
+  loadItemsSuccess$ = this.actions$
+    .ofType(itemsActions.LOAD_ITEMS_SUCCESS)
+    .pipe(map(() => new activitiesActions.LoadActivities()));
 }

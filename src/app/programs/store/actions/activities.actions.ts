@@ -2,7 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { Activity } from '../../models/activity.model';
 
-// load programs
+// load activities
 export const LOAD_ACTIVITIES = '[Programs] Load Workflow2 Activites';
 export const LOAD_ACTIVITIES_FAIL = '[Programs] Load Workflow2  Activites Fail';
 export const LOAD_ACTIVITIES_SUCCESS =
@@ -22,8 +22,33 @@ export class LoadActivitiesSuccess implements Action {
   constructor(public payload: Activity[]) {}
 }
 
+// create activities
+export const CREATE_ACTIVITY = '[Program] Creating Activity On Workflow2';
+export const CREATE_ACTIVITY_FAIL =
+  '[Program] Creating Activity On Workflow2 Fail';
+export const CREATE_ACTIVITY_SUCCESS =
+  '[Program] Creating Activity On Workflow2 Success';
+
+export class CreateActivity implements Action {
+  readonly type = CREATE_ACTIVITY;
+  constructor(public payload: Activity) {}
+}
+
+export class CreateActivityFail implements Action {
+  readonly type = CREATE_ACTIVITY_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class CreateActivitySuccess implements Action {
+  readonly type = CREATE_ACTIVITY_SUCCESS;
+  constructor(public payload: Activity) {}
+}
+
 // action types
 export type ActivitiesAction =
   | LoadActivities
   | LoadActivitiesFail
-  | LoadActivitiesSuccess;
+  | LoadActivitiesSuccess
+  | CreateActivity
+  | CreateActivityFail
+  | CreateActivitySuccess;

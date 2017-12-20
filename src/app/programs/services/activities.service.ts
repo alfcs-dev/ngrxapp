@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
@@ -22,5 +22,22 @@ export class ActivitiesService {
     return this.http
       .get<Activity[]>(environment.activitiesUrl, httpOptions)
       .pipe(catchError((error: any) => of(error)));
+  }
+
+  createActivity(activity: Activity): Observable<Activity> {
+    return this.http
+      .post<Activity>(environment.activitiesUrl, activity, httpOptions)
+      .pipe(catchError((error: any) => of(error)));
+  }
+
+  deleteActivity(activity: Activity): Observable<Activity> {
+    // const deleteOptions = {
+    //   ...httpOptions,
+    //   params: new HttpParams().set('body', JSON.stringify(activity))
+    // };
+    // return this.http
+    //   .delete(environment.activitiesUrl, deleteOptions)
+    //   .pipe(catchError((error: any) => of(error)));
+    return of(activity);
   }
 }

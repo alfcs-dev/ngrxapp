@@ -1,16 +1,18 @@
 import { createSelector } from '@ngrx/store';
 
+import * as fromRoot from '../../../store';
 import * as fromFeature from '../reducers';
 import * as fromItems from '../reducers/items.reducer';
 import * as fromActivities from './activities.selectors';
+import { Program } from '../../models/program.model';
 
-export const getProgramState = createSelector(
+export const getItemsState = createSelector(
   fromFeature.getProgramsState,
   (state: fromFeature.ProgramsState) => state.items
 );
 
 export const getItemsEntities = createSelector(
-  getProgramState,
+  getItemsState,
   fromItems.getItemsEntities
 );
 
@@ -27,11 +29,19 @@ export const getAllItems = createSelector(
     return itemsArray;
   }
 );
+
+export const getSpecificItem = createSelector(
+  getItemsEntities,
+  fromRoot.getRouterState,
+  (entities, router): Program =>
+    router.state && entities[router.state.params.programId]
+);
+
 export const getItemsLoaded = createSelector(
-  getProgramState,
+  getItemsState,
   fromItems.getItemsLoaded
 );
 export const getItemsLoading = createSelector(
-  getProgramState,
+  getItemsState,
   fromItems.getItemsLoading
 );

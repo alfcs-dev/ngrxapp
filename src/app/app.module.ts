@@ -11,7 +11,7 @@ import {
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers, CustomSerializer } from './store';
+import { reducers, effects, CustomSerializer } from './store';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -35,7 +35,7 @@ export const ROUTES: Routes = [
     MaterialElementsModule,
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot(effects),
     StoreRouterConnectingModule,
     environment.production ? [] : StoreDevtoolsModule.instrument()
   ],

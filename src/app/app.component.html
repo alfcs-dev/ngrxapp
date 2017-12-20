@@ -1,12 +1,14 @@
 <main class="app">
   <mat-toolbar class="app--header" color="primary">
     <mat-toolbar-row>
-      <mat-icon>home</mat-icon>
-      <span>{{title}}</span>
+      <a mat-button routerLink="/">
+        <mat-icon>home</mat-icon>
+        <span>{{title}}</span>
+      </a>
+
     </mat-toolbar-row>
   </mat-toolbar>
   <section class="app--view">
-    <h2>Here goes the content</h2>
     <router-outlet></router-outlet>
   </section>
   <mat-toolbar class="app--header">

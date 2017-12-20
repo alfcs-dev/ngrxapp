@@ -47,6 +47,17 @@ export function reducer(
         entities
       };
     }
+    case activitiesActions.CREATE_ACTIVITY_SUCCESS: {
+      const activity = action.payload;
+      const entities = {
+        ...state.entities,
+        [activity.id]: activity
+      };
+      return {
+        ...state,
+        entities
+      };
+    }
     default:
       return state;
   }
