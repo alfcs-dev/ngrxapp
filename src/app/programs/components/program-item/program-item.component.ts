@@ -11,10 +11,16 @@ import {
   template: `
     <mat-card>
       <mat-card-header>
-        {{program.name}}
+        {{program.id}} {{program.name}}
       </mat-card-header>
       <mat-card-content>
-        <pre>{{program | json}}</pre>
+      <mat-list *ngIf="program.activities">
+        <mat-list-item *ngFor="let activity of program.activities"> 
+          <mat-icon mat-list-icon>flag</mat-icon>
+          <span mat-line>{{activity.name}} {{activity.id}} </span>
+          <mat-icon>delete</mat-icon>
+        </mat-list-item>
+      </mat-list>
       </mat-card-content>
     </mat-card>
   `
@@ -22,6 +28,6 @@ import {
 export class ProgramItemComponent implements OnInit {
   @Input() program: any;
   ngOnInit() {
-    console.log('Inited children');
+    //console.log(this.program);
   }
 }

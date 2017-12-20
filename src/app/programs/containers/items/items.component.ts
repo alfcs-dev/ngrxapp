@@ -21,7 +21,8 @@ export class ItemsComponent implements OnInit {
   constructor(private store: Store<appStore.ProgramsState>) {}
 
   ngOnInit() {
-    this.programs$ = this.store.select(appStore.getAllPrograms);
+    this.programs$ = this.store.select(appStore.getAllItems);
     this.store.dispatch(new appStore.LoadItems());
+    this.store.dispatch(new appStore.LoadActivities());
   }
 }

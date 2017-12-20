@@ -4,6 +4,7 @@ export interface Program {
   name: string;
   id?: number;
   organization?: string;
+  url?: string;
   country?: string;
   start_date?: string;
   end_date?: string;
