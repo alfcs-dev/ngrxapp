@@ -6,8 +6,6 @@ import * as appStore from '../../store';
 import { Program } from '../../models/program.model';
 import { Activity } from '../../models/activity.model';
 
-import { ActivitiesService } from '../../services/activities.service';
-
 @Component({
   selector: 'app-programs-items',
   // changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,18 +21,14 @@ import { ActivitiesService } from '../../services/activities.service';
 })
 export class ItemsComponent implements OnInit {
   programs$: Observable<Program[]>;
-  constructor(
-    private store: Store<appStore.ProgramsState>,
-    private actService: ActivitiesService
-  ) {}
+  constructor(private store: Store<appStore.ProgramsState>) {}
 
   ngOnInit() {
     this.programs$ = this.store.select(appStore.getAllItems);
     this.store.dispatch(new appStore.LoadItems());
-    //this.store.dispatch(new appStore.LoadActivities());
   }
 
   onDelete(event: Activity) {
-    this.actService.deleteActivity(event).subscribe(r => console.log(r));
+    this.store.dispatch(new appStore.DeleteActivity(event));
   }
 }

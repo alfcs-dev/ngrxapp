@@ -44,6 +44,28 @@ export class CreateActivitySuccess implements Action {
   constructor(public payload: Activity) {}
 }
 
+// delete activity
+export const DELETE_ACTIVITY = '[Program] Deleting Activity On Workflow2';
+export const DELETE_ACTIVITY_FAIL =
+  '[Program] Deleting Activity On Workflow2 Fail';
+export const DELETE_ACTIVITY_SUCCESS =
+  '[Program] Deleting Activity On Workflow2 Success';
+
+export class DeleteActivity implements Action {
+  readonly type = DELETE_ACTIVITY;
+  constructor(public payload: Activity) {}
+}
+
+export class DeleteActivityFail implements Action {
+  readonly type = DELETE_ACTIVITY_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class DeleteActivitySuccess implements Action {
+  readonly type = DELETE_ACTIVITY_SUCCESS;
+  constructor(public payload: Activity) {}
+}
+
 // action types
 export type ActivitiesAction =
   | LoadActivities
@@ -51,4 +73,7 @@ export type ActivitiesAction =
   | LoadActivitiesSuccess
   | CreateActivity
   | CreateActivityFail
-  | CreateActivitySuccess;
+  | CreateActivitySuccess
+  | DeleteActivity
+  | DeleteActivityFail
+  | DeleteActivitySuccess;

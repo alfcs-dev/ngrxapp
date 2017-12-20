@@ -61,4 +61,24 @@ export class ActivitiesEffects {
       map((action: activitiesActions.CreateActivitySuccess) => action.payload),
       map(activity => new rootStore.Go({ path: ['/programs'] }))
     );
+
+  @Effect()
+  deleteAtivity$ = this.actions$
+    .ofType(activitiesActions.DELETE_ACTIVITY)
+    .pipe(
+      map((action: activitiesActions.DeleteActivity) => action.payload),
+      switchMap(activity =>
+        this.activitiesService
+          .deleteActivity(activity)
+          .pipe(
+            map(
+              createdActivity =>
+                new activitiesActions.DeleteActivitySuccess(createdActivity)
+            ),
+            catchError(error =>
+              of(new activitiesActions.DeleteActivityFail(error))
+            )
+          )
+      )
+    );
 }

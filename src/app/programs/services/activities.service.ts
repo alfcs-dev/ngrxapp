@@ -31,13 +31,18 @@ export class ActivitiesService {
   }
 
   deleteActivity(activity: Activity): Observable<Activity> {
-    // const deleteOptions = {
-    //   ...httpOptions,
-    //   params: new HttpParams().set('body', JSON.stringify(activity))
-    // };
-    // return this.http
-    //   .delete(environment.activitiesUrl, deleteOptions)
-    //   .pipe(catchError((error: any) => of(error)));
-    return of(activity);
+    const deleteOptions = {
+      ...httpOptions,
+      params: new HttpParams().set(
+        'payload',
+        JSON.stringify({
+          name: activity.name,
+          workflowlevel1: activity.workflowlevel1
+        })
+      )
+    };
+    return this.http
+      .delete(environment.activitiesUrl, deleteOptions)
+      .pipe(catchError((error: any) => of(error)));
   }
 }

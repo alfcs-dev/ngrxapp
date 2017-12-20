@@ -4,7 +4,6 @@ import * as fromRoot from '../../../store';
 import * as fromFeature from '../reducers';
 import * as fromActivities from '../reducers/activities.reducer';
 import { Activity } from '../../models/activity.model';
-// import * as fromActivities from './activites.selectors';
 
 export const getActivitiesState = createSelector(
   fromFeature.getProgramsState,
