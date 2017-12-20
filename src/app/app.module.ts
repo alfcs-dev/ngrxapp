@@ -1,9 +1,19 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { environment } from '../environments/environment';
 
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer
+} from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers, CustomSerializer } from './store';
+
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { MaterialElementsModule } from './angular-material.module';
 
@@ -24,9 +34,12 @@ export const ROUTES: Routes = [
     BrowserAnimationsModule,
     MaterialElementsModule,
     RouterModule.forRoot(ROUTES),
-    StoreModule.forRoot({})
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule,
+    environment.production ? [] : StoreDevtoolsModule.instrument()
   ],
-  providers: [],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

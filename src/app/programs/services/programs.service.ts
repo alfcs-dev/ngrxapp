@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { tap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/throw';
+import { Program } from '../models/program.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,9 +18,9 @@ const httpOptions = {
 export class ProgramsService {
   constructor(private http: HttpClient) {}
 
-  getPrograms(): Observable<any[]> {
+  getPrograms(): Observable<Program[]> {
     return this.http
-      .get<any[]>(environment.programsUrl, httpOptions)
+      .get<Program[]>(environment.programsUrl, httpOptions)
       .pipe(catchError((error: any) => of(error)));
   }
 }

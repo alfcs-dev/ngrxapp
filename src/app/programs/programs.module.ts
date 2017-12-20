@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MaterialElementsModule } from '../angular-material.module';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { MaterialElementsModule } from '../angular-material.module';
+import { reducers, effects } from './store';
 
 // containers
 import * as containers from './containers';
@@ -15,7 +17,7 @@ import * as containers from './containers';
 import * as presentational from './components';
 
 // Services
-import { ProgramsService } from './services/programs.service';
+import * as allServices from './services';
 
 // routes
 export const ROUTES: Routes = [
@@ -32,9 +34,10 @@ export const ROUTES: Routes = [
     HttpClientModule,
     MaterialElementsModule,
     RouterModule.forChild(ROUTES),
-    StoreModule.forFeature('programs', {})
+    StoreModule.forFeature('programs', reducers),
+    EffectsModule.forFeature(effects)
   ],
-  providers: [ProgramsService],
+  providers: [...allServices.services],
   declarations: [...containers.list, ...presentational.list],
   exports: [...containers.list, ...presentational.list]
 })
