@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
@@ -8,11 +8,11 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/throw';
 import { Activity } from '../models/activity.model';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    Authorization: `Token ${environment.token}`
-  })
-};
+const headers = new HttpHeaders({
+  Authorization: `Token ${environment.token}`
+});
+
+const httpOptions = { headers };
 
 @Injectable()
 export class ActivitiesService {
@@ -31,18 +31,11 @@ export class ActivitiesService {
   }
 
   deleteActivity(activity: Activity): Observable<Activity> {
-    const deleteOptions = {
-      ...httpOptions,
-      params: new HttpParams().set(
-        'payload',
-        JSON.stringify({
-          name: activity.name,
-          workflowlevel1: activity.workflowlevel1
-        })
-      )
-    };
     return this.http
-      .delete(environment.activitiesUrl, deleteOptions)
+      .request<Activity>('DELETE', environment.activitiesUrl, {
+        ...httpOptions,
+        body: activity
+      })
       .pipe(catchError((error: any) => of(error)));
   }
 }
