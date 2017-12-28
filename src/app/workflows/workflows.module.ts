@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MaterialElementsModule } from '../angular-material.module';
+import { MaterialElementsModule } from '../material-elements.module';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -49,4 +49,4 @@ export const ROUTES: Routes = [
   declarations: [...containers.list, ...presentational.list],
   exports: [...containers.list, ...presentational.list]
 })
-export class ProgramsModule {}
+export class WorkflowsModule {}

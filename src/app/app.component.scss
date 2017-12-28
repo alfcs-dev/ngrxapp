@@ -1,14 +1,11 @@
-@import '../_variables';
+@import '../assets/_variables';
 :host {
   display: flex;
-  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  background-color: $basic-background;
   &--view {
     flex: 1;
   }

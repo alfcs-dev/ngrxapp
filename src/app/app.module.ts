@@ -15,24 +15,27 @@ import { reducers, effects, CustomSerializer } from './store';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { MaterialElementsModule } from './angular-material.module';
+import { MaterialElementsModule } from './material-elements.module';
+import { SharedModule } from './shared/shared.module';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 
 export const ROUTES: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'programs' },
+  { path: '', component: HomeComponent },
   {
     path: 'programs',
-    loadChildren: './programs/programs.module#ProgramsModule'
+    loadChildren: './workflows/workflows.module#WorkflowsModule'
   }
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomeComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialElementsModule,
+    SharedModule,
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(effects),

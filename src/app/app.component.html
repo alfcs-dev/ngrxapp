@@ -1,17 +1,5 @@
-<main class="app">
-  <mat-toolbar class="app--header" color="primary">
-    <mat-toolbar-row>
-      <a mat-button routerLink="/">
-        <mat-icon>home</mat-icon>
-        <span>{{title}}</span>
-      </a>
-
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <section class="app--view">
-    <router-outlet></router-outlet>
-  </section>
-  <mat-toolbar class="app--header">
-    <span>An app by Alfredo Castaneda</span>
-  </mat-toolbar>
+<app-header></app-header>
+<main class="app--view">
+  <router-outlet></router-outlet>
 </main>
+<app-footer></app-footer>
