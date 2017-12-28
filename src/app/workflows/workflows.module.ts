@@ -23,7 +23,7 @@ import * as allServices from './services';
 export const ROUTES: Routes = [
   {
     path: '',
-    component: containers.ItemsComponent
+    component: containers.ProgramsComponent
   },
   {
     path: ':programId/activity/new',
@@ -42,7 +42,7 @@ export const ROUTES: Routes = [
     HttpClientModule,
     MaterialElementsModule,
     RouterModule.forChild(ROUTES),
-    StoreModule.forFeature('programs', reducers),
+    StoreModule.forFeature('workflows', reducers),
     EffectsModule.forFeature(effects)
   ],
   providers: [...allServices.services],

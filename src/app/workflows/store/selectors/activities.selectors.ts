@@ -6,8 +6,8 @@ import * as fromActivities from '../reducers/activities.reducer';
 import { Activity } from '../../models/activity.model';
 
 export const getActivitiesState = createSelector(
-  fromFeature.getProgramsState,
-  (state: fromFeature.ProgramsState) => state.activities
+  fromFeature.getWorkflowsState,
+  (state: fromFeature.WorkflowsState) => state.activities
 );
 
 export const getActivitiesEntities = createSelector(

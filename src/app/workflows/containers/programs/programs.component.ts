@@ -7,9 +7,9 @@ import { Program } from '../../models/program.model';
 import { Activity } from '../../models/activity.model';
 
 @Component({
-  selector: 'app-programs-items',
+  selector: 'app-programs',
   // changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['items.component.scss'],
+  styleUrls: ['programs.component.scss'],
   template: `
     <div class="products">
       <h2>Here comes the list of programs</h2>
@@ -19,13 +19,13 @@ import { Activity } from '../../models/activity.model';
     </div>
   `
 })
-export class ItemsComponent implements OnInit {
+export class ProgramsComponent implements OnInit {
   programs$: Observable<Program[]>;
-  constructor(private store: Store<appStore.ProgramsState>) {}
+  constructor(private store: Store<appStore.WorkflowsState>) {}
 
   ngOnInit() {
-    this.programs$ = this.store.select(appStore.getAllItems);
-    this.store.dispatch(new appStore.LoadItems());
+    this.programs$ = this.store.select(appStore.getAllPrograms);
+    this.store.dispatch(new appStore.LoadPrograms());
   }
 
   onDelete(event: Activity) {

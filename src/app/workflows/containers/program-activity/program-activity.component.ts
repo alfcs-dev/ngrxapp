@@ -22,10 +22,10 @@ import { Activity } from '../../models/activity.model';
 export class ProgramAcivityComponent implements OnInit {
   program$: Observable<Program>;
   activity$: Observable<Activity>;
-  constructor(private store: Store<appStore.ProgramsState>) {}
+  constructor(private store: Store<appStore.WorkflowsState>) {}
 
   ngOnInit() {
-    this.program$ = this.store.select(appStore.getSpecificItem);
+    this.program$ = this.store.select(appStore.getSpecificProgram);
     this.activity$ = this.store.select(appStore.getSpecificActivity);
   }
 

@@ -1,2 +1,2 @@
-export * from './items.actions';
+export * from './programs.actions';
 export * from './activities.actions';

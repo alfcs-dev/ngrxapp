@@ -1,13 +1,13 @@
-import * as itemActions from '../actions/items.actions';
+import * as itemActions from '../actions/programs.actions';
 import { Program } from '../../models/program.model';
 
-export interface ItemsState {
+export interface ProgramsState {
   entities: { [id: number]: Program };
   loaded: boolean;
   loading: boolean;
 }
 
-export const initialState: ItemsState = {
+export const initialState: ProgramsState = {
   entities: {},
   loaded: false,
   loading: false
@@ -15,23 +15,23 @@ export const initialState: ItemsState = {
 
 export function reducer(
   state = initialState,
-  action: itemActions.ItemsAction
-): ItemsState {
+  action: itemActions.ProgramsAction
+): ProgramsState {
   switch (action.type) {
-    case itemActions.LOAD_ITEMS:
+    case itemActions.LOAD_PROGRAMS:
       return {
         ...state,
         loading: true
       };
-    case itemActions.LOAD_ITEMS_FAIL:
+    case itemActions.LOAD_PROGRAMS_FAIL:
       return {
         ...state,
         loading: false,
         loaded: false
       };
-    case itemActions.LOAD_ITEMS_SUCCESS: {
-      const items = action.payload;
-      const entities = items.reduce(
+    case itemActions.LOAD_PROGRAMS_SUCCESS: {
+      const programs = action.payload;
+      const entities = programs.reduce(
         (entitiesAcc: { [id: number]: Program }, item: Program) => {
           return {
             ...entitiesAcc,
@@ -52,6 +52,6 @@ export function reducer(
   }
 }
 
-export const getItemsLoading = (state: ItemsState) => state.loading;
-export const getItemsLoaded = (state: ItemsState) => state.loaded;
-export const getItemsEntities = (state: ItemsState) => state.entities;
+export const getProgramsLoading = (state: ProgramsState) => state.loading;
+export const getProgramsLoaded = (state: ProgramsState) => state.loaded;
+export const getProgramsEntities = (state: ProgramsState) => state.entities;

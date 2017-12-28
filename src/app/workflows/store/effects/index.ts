@@ -1,7 +1,7 @@
-import { ItemsEffects } from './items.effect';
+import { ProgramsEffects } from './programs.effect';
 import { ActivitiesEffects } from './activities.effect';
 
-export const effects: any[] = [ItemsEffects, ActivitiesEffects];
+export const effects: any[] = [ProgramsEffects, ActivitiesEffects];
 
-export * from './items.effect';
+export * from './programs.effect';
 export * from './activities.effect';

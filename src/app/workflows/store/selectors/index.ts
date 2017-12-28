@@ -1,2 +1,2 @@
-export * from './items.selectors';
+export * from './programs.selectors';
 export * from './activities.selectors';
