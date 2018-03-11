@@ -27,11 +27,11 @@ export const ROUTES: Routes = [
   },
   {
     path: ':programId/activity/new',
-    component: containers.ProgramAcivityComponent
+    component: containers.ProgramComponent
   },
   {
     path: ':programId/activity/:activityId',
-    component: containers.ProgramAcivityComponent
+    component: containers.ProgramComponent
   }
 ];
 

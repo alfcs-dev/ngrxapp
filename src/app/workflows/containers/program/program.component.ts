@@ -19,7 +19,7 @@ import { Activity } from '../../models/activity.model';
     </div>
   `
 })
-export class ProgramAcivityComponent implements OnInit {
+export class ProgramComponent implements OnInit {
   program$: Observable<Program>;
   activity$: Observable<Activity>;
   constructor(private store: Store<appStore.WorkflowsState>) {}
