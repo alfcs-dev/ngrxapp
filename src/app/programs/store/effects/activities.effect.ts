@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
@@ -16,49 +16,34 @@ export class ActivitiesEffects {
   ) {}
 
   @Effect()
-  loadActivities$ = this.actions$
-    .ofType(activitiesActions.LOAD_ACTIVITIES)
-    .pipe(
-      switchMap(() => {
-        return this.activitiesService
-          .getActivities()
-          .pipe(
-            map(
-              activities =>
-                new activitiesActions.LoadActivitiesSuccess(activities)
-            ),
-            catchError(error =>
-              of(new activitiesActions.LoadActivitiesFail(error))
-            )
-          );
-      })
-    );
+  loadActivities$ = this.actions$.pipe(
+    ofType(activitiesActions.LOAD_ACTIVITIES),
+    switchMap(() => {
+      return this.activitiesService.getActivities().pipe(
+        map(activities => new activitiesActions.LoadActivitiesSuccess(activities)),
+        catchError(error => of(new activitiesActions.LoadActivitiesFail(error)))
+      );
+    })
+  );
 
   @Effect()
-  createAtivity$ = this.actions$
-    .ofType(activitiesActions.CREATE_ACTIVITY)
-    .pipe(
-      map((action: activitiesActions.CreateActivity) => action.payload),
-      switchMap(activity =>
-        this.activitiesService
-          .createActivity(activity)
-          .pipe(
-            map(
-              createdActivity =>
-                new activitiesActions.CreateActivitySuccess(createdActivity)
-            ),
-            catchError(error =>
-              of(new activitiesActions.CreateActivityFail(error))
-            )
-          )
+  createAtivity$ = this.actions$.pipe(
+    ofType(activitiesActions.CREATE_ACTIVITY),
+    map((action: activitiesActions.CreateActivity) => action.payload),
+    switchMap(activity =>
+      this.activitiesService.createActivity(activity).pipe(
+        map(
+          createdActivity => new activitiesActions.CreateActivitySuccess(createdActivity)
+        ),
+        catchError(error => of(new activitiesActions.CreateActivityFail(error)))
       )
-    );
+    )
+  );
 
   @Effect()
-  createActivitySuccess$ = this.actions$
-    .ofType(activitiesActions.CREATE_ACTIVITY_SUCCESS)
-    .pipe(
-      map((action: activitiesActions.CreateActivitySuccess) => action.payload),
-      map(activity => new rootStore.Go({ path: ['/programs'] }))
-    );
+  createActivitySuccess$ = this.actions$.pipe(
+    ofType(activitiesActions.CREATE_ACTIVITY_SUCCESS),
+    map((action: activitiesActions.CreateActivitySuccess) => action.payload),
+    map(activity => new rootStore.Go({ path: ['/programs'] }))
+  );
 }

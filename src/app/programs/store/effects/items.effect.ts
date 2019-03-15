@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { of } from 'rxjs/observable/of';
 import { map, switchMap, catchError } from 'rxjs/operators';
 
 import * as itemsActions from '../actions/items.actions';
 import * as activitiesActions from '../actions/activities.actions';
 import * as services from '../../services';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ItemsEffects {
@@ -16,19 +17,19 @@ export class ItemsEffects {
   ) {}
 
   @Effect()
-  loadItems$ = this.actions$.ofType(itemsActions.LOAD_ITEMS).pipe(
+  loadItems$ = this.actions$.pipe(
+    ofType(itemsActions.LOAD_ITEMS),
     switchMap(() => {
-      return this.programsService
-        .getPrograms()
-        .pipe(
-          map(programs => new itemsActions.LoadItemsSuccess(programs)),
-          catchError(error => of(new itemsActions.LoadItemsFail(error)))
-        );
+      return this.programsService.getPrograms().pipe(
+        map(programs => new itemsActions.LoadItemsSuccess(programs)),
+        catchError(error => of(new itemsActions.LoadItemsFail(error)))
+      );
     })
   );
 
   @Effect()
-  loadItemsSuccess$ = this.actions$
-    .ofType(itemsActions.LOAD_ITEMS_SUCCESS)
-    .pipe(map(() => new activitiesActions.LoadActivities()));
+  loadItemsSuccess$ = this.actions$.pipe(
+    ofType(itemsActions.LOAD_ITEMS_SUCCESS),
+    map(() => new activitiesActions.LoadActivities())
+  );
 }
